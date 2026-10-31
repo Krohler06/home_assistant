@@ -1,0 +1,35 @@
+name: YAML & Home Assistant config
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install yamllint
+        run: python -m pip install --disable-pip-version-check yamllint
+      - name: Lint YAML files
+        run: find . -type f \( -name '*.yaml' -o -name '*.yml' \) -not -path './.git/*' -print0 | xargs -0 yamllint -c .yamllint
+      - name: Prepare minimal Home Assistant config for check_config
+        run: |
+          mkdir -p .ci/homeassistant
+          printf 'default_config:\n\n# CI fixture: this checks HA core configuration syntax only.\n' > .ci/homeassistant/configuration.yaml
+      - name: Check minimal Home Assistant configuration
+        run: >-
+          docker run --rm --entrypoint python3
+          -v "${{ github.workspace }}/.ci/homeassistant:/config"
+          ghcr.io/home-assistant/home-assistant:stable
+          -m homeassistant --script check_config --config /config
