@@ -1,0 +1,943 @@
+views:
+- title: Accueil
+  path: accueil
+  icon: mdi:home
+  type: sections
+  max_columns: 3
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Présence & météo
+      heading_style: title
+      icon: mdi:weather-partly-cloudy
+    - type: custom:status-card
+    - type: tile
+      entity: weather.nice
+      name: Météo
+      icon: mdi:weather-partly-cloudy
+    - type: entities
+      title: Présence
+      entities:
+      - person.gambetta_bis
+      - person.magali
+      - person.nina
+    - type: tile
+      entity: sensor.kleenex_pollen_radar_maison_graminees_niveau
+      name: Pollens — graminées
+    - type: tile
+      entity: sensor.kleenex_pollen_radar_maison_arbres_niveau
+      name: Pollens — arbres
+    - type: tile
+      entity: sensor.kleenex_pollen_radar_maison_herbacees_niveau
+      name: Pollens — herbacées
+  - type: grid
+    cards:
+    - type: heading
+      heading: Accès aux pièces
+      heading_style: title
+      icon: mdi:floor-plan
+    - type: custom:area-card-plus
+      area: local_technique
+      name: Technique
+      icon: mdi:server
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-local_technique
+    - type: custom:area-card-plus
+      area: all_house
+      name: Toute la maison
+      icon: mdi:home
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-all_house
+    - type: custom:area-card-plus
+      area: bureau
+      name: Bureau
+      icon: mdi:desk
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/bureau
+    - type: custom:area-card-plus
+      area: entree
+      name: Entrée
+      icon: mdi:door
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-entree
+    - type: custom:area-card-plus
+      area: salon
+      name: Salon
+      icon: mdi:sofa
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-salon
+    - type: custom:area-card-plus
+      area: cuisine
+      name: Cuisine
+      icon: mdi:countertop
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-cuisine
+    - type: custom:area-card-plus
+      area: dressing
+      name: Dressing
+      icon: mdi:hanger
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-dressing
+    - type: custom:area-card-plus
+      area: couloir
+      name: Couloir
+      icon: mdi:coat-rack
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-couloir
+    - type: custom:area-card-plus
+      area: chambre_noe
+      name: Chambre Noé
+      icon: mdi:bed
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-chambre_noe
+    - type: custom:area-card-plus
+      area: chambre
+      name: Chambre parentale
+      icon: mdi:bed-king
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-chambre
+    - type: custom:area-card-plus
+      area: chambre_nina
+      name: Chambre Nina
+      icon: mdi:bed-single
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-chambre_nina
+    - type: custom:area-card-plus
+      area: salle_de_bain
+      name: Salle de bain
+      icon: mdi:shower
+      display_type: picture
+      layout: vertical
+      design: V1
+      theme: clear
+      tap_action:
+        action: navigate
+        navigation_path: /dashboard-maison/areas-salle_de_bain
+  - type: grid
+    cards:
+    - type: heading
+      heading: Alertes & équipements
+      heading_style: title
+      icon: mdi:alert-circle-outline
+    - type: entity-filter
+      entities:
+      - binary_sensor.porte_entree_porte
+      - binary_sensor.contact_placard
+      state_filter:
+      - 'on'
+      card:
+        type: entities
+        title: Ouvertures actives
+        show_header_toggle: false
+      show_empty: false
+    - type: tile
+      entity: vacuum.valetudo_huguette
+      name: Aspirateur
+      icon: mdi:robot-vacuum
+    - type: tile
+      entity: climate.radiateur_couloir_2
+      name: Chauffage du couloir
+    - type: tile
+      entity: light.ampoule_toilette
+      name: Lumière des toilettes
+  theme: visionos
+- title: Toute la maison
+  path: areas-all_house
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Actions
+      heading_style: title
+      icon: mdi:robot
+    - type: tile
+      entity: automation.placard
+    - type: tile
+      entity: automation.open_door
+  - type: grid
+    cards:
+    - type: heading
+      heading: Interphone
+      heading_style: title
+      icon: mdi:phone
+    - type: tile
+      entity: button.enregistreur_gambetta_answer_call
+      name: Répondre
+    - type: tile
+      entity: button.enregistreur_gambetta_cancel_call
+      name: Annuler
+    - type: tile
+      entity: button.enregistreur_gambetta_hangup_call
+      name: Raccrocher
+  badges:
+  - type: entity
+    entity: sensor.nice_humidity
+    show_name: true
+    show_state: true
+  theme: visionos
+- title: Chambre Nina
+  path: areas-chambre_nina
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:bed-single
+    - type: sensor
+      entity: sensor.thermometre_nina_temperature
+      name: Température
+      graph: line
+      detail: 1
+    - type: tile
+      entity: sensor.thermometre_nina_humidite
+      name: Humidité
+  - type: grid
+    cards:
+    - type: heading
+      heading: Pronote
+      heading_style: title
+      icon: mdi:school
+    - type: custom:pronote-homework-card
+      entity: sensor.pronote_farsetti_lattelais_nina_homework
+      display_header: true
+      display_done_homework: true
+      reduce_done_homework: true
+      current_week_only: false
+    - type: custom:pronote-averages-card
+      entity: sensor.pronote_farsetti_lattelais_nina_averages
+      average_format: full
+      display_header: true
+      compare_with_class_average: true
+      display_class_average: true
+      display_class_min: true
+      display_class_max: true
+    - type: custom:pronote-grades-card
+      entity: sensor.pronote_farsetti_lattelais_nina_grades
+      grade_format: full
+      display_header: true
+      display_date: true
+      display_comment: true
+      display_class_average: true
+      compare_with_class_average: true
+      display_coefficient: true
+      display_class_min: true
+      display_class_max: true
+      display_new_grade_notice: true
+  theme: visionos
+- title: Chambre Noé
+  path: areas-chambre_noe
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Climatisation
+      heading_style: title
+      icon: mdi:home-thermometer
+    - type: tile
+      entity: climate.clim_noe
+      name: Climatisation Noé
+      features:
+      - type: target-temperature
+    - type: tile
+      entity: sensor.current_clim_noe
+      name: Température actuelle
+  - type: grid
+    cards:
+    - type: heading
+      heading: Réglages
+      heading_style: title
+      icon: mdi:tune
+    - type: tile
+      entity: select.mode_clim_noe
+      name: Mode
+    - type: tile
+      entity: select.fan_clim_noe
+      name: Ventilation
+  theme: visionos
+- title: Chambre Parentale
+  path: areas-chambre
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Climatisation
+      heading_style: title
+      icon: mdi:home-thermometer
+    - type: tile
+      entity: climate.clim_nous
+      name: Climatisation parentale
+      features:
+      - type: target-temperature
+    - type: tile
+      entity: sensor.current_clim_nous
+      name: Température actuelle
+  - type: grid
+    cards:
+    - type: heading
+      heading: Médias
+      heading_style: title
+      icon: mdi:multimedia
+    - type: tile
+      entity: media_player.tv_parents
+      name: TV parents
+    - type: tile
+      entity: media_player.tv_parents_2
+      name: TV parents 2
+    - type: tile
+      entity: media_player.chambre_parentale
+      name: Lecteur chambre
+    - type: tile
+      entity: media_player.chambre_parentale_2
+      name: Lecteur chambre 2
+  - type: grid
+    cards:
+    - type: heading
+      heading: Réglages
+      heading_style: title
+      icon: mdi:tune
+    - type: tile
+      entity: select.mode_clim_nous
+      name: Mode
+    - type: tile
+      entity: select.fan_clim_nous
+      name: Ventilation
+  theme: visionos
+- title: Couloir
+  path: areas-couloir
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Chauffage
+      heading_style: title
+      icon: mdi:radiator
+    - type: tile
+      entity: climate.radiateur_couloir_2
+      name: Radiateur
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:thermometer
+    - type: tile
+      entity: sensor.thermometre_couloir_temperature
+      name: Température
+    - type: tile
+      entity: sensor.thermometre_couloir_humidite
+      name: Humidité
+  theme: visionos
+- title: Cuisine
+  path: areas-cuisine
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Chauffage
+      heading_style: title
+      icon: mdi:radiator
+    - type: tile
+      entity: climate.radiateur_cuisine
+      name: Radiateur
+  - type: grid
+    cards:
+    - type: heading
+      heading: Prises connectées
+      heading_style: title
+      icon: mdi:power-socket-eu
+    - type: tile
+      entity: switch.prise_microonde
+      name: Micro-ondes
+    - type: tile
+      entity: switch.prise_machine_cafe
+      name: Machine à café
+    - type: tile
+      entity: switch.prise_congelateur
+      name: Congélateur
+    - type: tile
+      entity: switch.prise_connectee
+      name: Prise connectée
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:thermometer
+    - type: tile
+      entity: sensor.thermometre_cuisine_temperature
+      name: Température
+    - type: tile
+      entity: sensor.thermometre_cuisine_humidite
+      name: Humidité
+  theme: visionos
+- title: Dressing
+  path: areas-dressing
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Équipements
+      heading_style: title
+      icon: mdi:washing-machine
+    - type: tile
+      entity: water_heater.dhwp_actuator
+      name: Chauffe-eau
+    - type: tile
+      entity: switch.prise_lave_linge_socket_1_2
+      name: Lave-linge
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:thermometer
+    - type: tile
+      entity: sensor.thermometre_dressing_temperature
+      name: Température
+    - type: tile
+      entity: sensor.thermometre_dressing_humidite
+      name: Humidité
+  theme: visionos
+- title: Entrée
+  path: areas-entree
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: custom:xiaomi-vacuum-map-card
+    entity: vacuum.valetudo_huguette
+    map_locked: true
+    vacuum_platform: Hypfer/Valetudo
+    map_source:
+      camera: camera.valetudo_v1_huguette_camera
+    calibration_source:
+      camera: true
+    internal_variables:
+      topic: valetudo/huguette
+    map_modes:
+    - template: vacuum_goto
+      coordinates_rounding: true
+    - template: vacuum_clean_zone
+      coordinates_rounding: true
+    - template: vacuum_clean_segment
+      coordinates_rounding: true
+  - type: grid
+    cards:
+    - type: heading
+      heading: Éclairage & prises
+      heading_style: title
+      icon: mdi:lightbulb
+    - type: tile
+      entity: light.ampoule_hall
+      name: Lumière du hall
+      features:
+      - type: light-brightness
+    - type: tile
+      entity: switch.prise_ordi
+      name: Prise ordinateur
+      features:
+      - type: toggle
+    - type: tile
+      entity: sensor.valetudo_huguette_battery_level
+      name: Batterie aspirateur
+  - type: grid
+    cards:
+    - type: heading
+      heading: Caméras
+      heading_style: title
+      icon: mdi:cctv
+    - type: tile
+      entity: camera.cuisine_camera
+      name: Caméra cuisine
+    - type: custom:advanced-camera-card
+      cameras:
+      - camera_entity: camera.camera_bal_fluide
+        live_provider: auto
+        icon: mdi:cctv
+        always_error_if_entity_unavailable: false
+      profiles:
+      - casting
+      view:
+        default: live
+  theme: visionos
+- title: Local technique
+  path: areas-local_technique
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Ouvertures
+      heading_style: title
+      icon: mdi:door
+    - type: tile
+      entity: binary_sensor.porte_entree_porte
+      name: Porte d’entrée
+    - type: tile
+      entity: binary_sensor.contact_placard
+      name: Placard
+  - type: grid
+    cards:
+    - type: heading
+      heading: Caméras
+      heading_style: title
+      icon: mdi:cctv
+    - type: picture-entity
+      entity: camera.camera_bal_fluide
+      show_name: false
+      show_state: false
+      camera_view: auto
+      fit_mode: cover
+    - type: picture-entity
+      entity: camera.camera_allee_fluide
+      show_name: false
+      show_state: false
+      camera_view: auto
+      fit_mode: cover
+  - type: grid
+    cards:
+    - type: heading
+      heading: Système
+      heading_style: title
+      icon: mdi:server
+    - type: tile
+      entity: sensor.system_monitor_temperature_du_processeur
+      name: Température processeur
+    - type: tile
+      entity: weather.nice
+      name: Météo
+  theme: visionos
+- title: Salle de bain
+  path: areas-salle_de_bain
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Chauffage
+      heading_style: title
+      icon: mdi:radiator
+    - type: tile
+      entity: climate.seche_serviette
+      name: Sèche-serviettes
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:thermometer
+    - type: tile
+      entity: sensor.seche_serviette_io_2096051_7_temperature
+      name: Température
+    - type: tile
+      entity: sensor.seche_serviette_io_2096051_4_relative_humidity
+      name: Humidité
+  theme: visionos
+- title: Salon
+  path: areas-salon
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Médias
+      heading_style: title
+      icon: mdi:multimedia
+    - type: tile
+      entity: media_player.tv_samsung_6_series_50
+      name: TV Samsung
+    - type: tile
+      entity: media_player.samsung_6_series_50
+      name: Samsung TV
+    - type: tile
+      entity: media_player.playstation_4
+      name: PlayStation 4
+    - type: tile
+      entity: media_player.boitier_tv_xiaomi_2
+      name: Boîtier Xiaomi 2
+    - type: tile
+      entity: media_player.android_tv_192_168_5_86
+      name: Android TV
+    - type: tile
+      entity: media_player.boitier_tv_xiaomi
+      name: Boîtier Xiaomi
+  - type: grid
+    cards:
+    - type: heading
+      heading: Équipement
+      heading_style: title
+      icon: mdi:sofa
+    - type: tile
+      entity: switch.multimedia_salon
+      name: Prise multimédia
+      features:
+      - type: toggle
+    - type: tile
+      entity: sensor.thermometre_salon_temperature_2
+      name: Température
+    - type: tile
+      entity: sensor.thermometre_salon_humidite
+      name: Humidité
+  - type: grid
+    cards:
+    - type: heading
+      heading: Télécommande
+      heading_style: title
+      icon: mdi:remote
+    - type: custom:firemote-card
+      entity: media_player.salon_boitier_xiaomi
+      device_family: xiaomi
+      device_type: mi-box-s
+      compatibility_mode: default
+      android_tv_remote_entity: remote.boitier_tv_xiaomi
+      app_launch_1: tf1-plus
+      app_launch_2: orange-tv-fr
+      app_launch_3: youtube
+      app_launch_4: france-tv
+      visible_name_text: Salon
+      name_position: bottom
+      defaultRemoteStyle_override: XM1
+  theme: visionos
+- title: Bureau
+  path: bureau
+  icon: mdi:home-outline
+  type: sections
+  subview: true
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: Confort
+      heading_style: title
+      icon: mdi:thermometer
+    - type: tile
+      entity: sensor.thermometre_bureau
+      name: Température
+    - type: tile
+      entity: sensor.thermometre_bureau_humidite
+      name: Humidité
+  - type: grid
+    cards:
+    - type: heading
+      heading: Équipement
+      heading_style: title
+      icon: mdi:desk
+    - type: tile
+      entity: switch.prise_ordi
+      name: Prise ordinateur
+    - type: tile
+      entity: sensor.thermometre_bureau_batterie
+      name: Batterie du thermomètre
+  theme: visionos
+- title: Plan
+  path: plan
+  icon: mdi:home-assistant
+  type: panel
+  cards:
+  - type: picture-elements
+    image: /local/floor/maison1.png
+    elements:
+    - type: state-icon
+      entity: vacuum.valetudo_huguette
+      icon: mdi:vacuum-outline
+      style:
+        top: 45%
+        left: 65%
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: climate.radiateur_cuisine
+      icon: mdi:radiator
+      style:
+        top: 70%
+        left: 88%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: climate.radiateur_couloir_2
+      icon: mdi:radiator
+      style:
+        top: 75%
+        left: 45%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: climate.clim_noe
+      icon: mdi:air-filter
+      style:
+        top: 45%
+        left: 51%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: light.ampoule_hall
+      icon: mdi:lightbulb-auto
+      style:
+        top: 58%
+        left: 70%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: media_player.tv_parents
+      icon: mdi:television
+      style:
+        top: 57%
+        left: 46%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: climate.clim_nous
+      icon: mdi:air-filter
+      style:
+        top: 45%
+        left: 45%
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: camera.camera_bal_fluide
+      icon: mdi:cctv
+      style:
+        top: 10%
+        left: 10%
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: camera.camera_allee_fluide
+      icon: mdi:cctv
+      style:
+        top: 10%
+        left: 15%
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: binary_sensor.contact_placard
+      icon: mdi:door
+      style:
+        top: 10%
+        left: 6%
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+    - type: state-icon
+      entity: binary_sensor.porte_entree_porte
+      icon: mdi:door
+      style:
+        top: 10%
+        left: 15%
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+    - type: state-badge
+      entity: sensor.current_clim_noe
+      style:
+        top: 45%
+        left: 57%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+    - type: state-badge
+      entity: sensor.thermometre_bureau
+      style:
+        top: 20%
+        left: 20%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+    - type: state-badge
+      entity: sensor.thermometre_bureau_humidite
+      style:
+        top: 20%
+        left: 28%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+    - type: state-badge
+      entity: sensor.thermometre_nina_temperature
+      style:
+        top: 60%
+        left: 25%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+    - type: state-badge
+      entity: sensor.wifi_temperature_humidity_10_temperature
+      style:
+        top: 70%
+        left: 66%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+    - type: state-badge
+      entity: sensor.current_clim_nous
+      style:
+        top: 45%
+        left: 37%
+        color: white
+        --ha-label-badge-title-font-size: 0
+      tap_action:
+        action: none
+  theme: visionos
+- title: Batteries
+  path: power
+  icon: mdi:battery
+  type: sections
+  max_columns: 2
+  sections:
+  - type: grid
+    cards:
+    - type: heading
+      heading: À recharger
+      heading_style: title
+      icon: mdi:battery-alert
+    - type: entity-filter
+      entities:
+      - sensor.thermometre_bureau_batterie
+      - sensor.thermometre_nina_batterie
+      - sensor.porte_entree_batterie
+      - sensor.contact_placard_batterie
+      - sensor.valetudo_huguette_battery_level
+      - sensor.wifi_temperature_humidity_8_batterie
+      - sensor.wifi_temperature_humidity_9_batterie
+      - sensor.wifi_temperature_humidity_10_batterie
+      - sensor.wifi_temperature_humidity_11_batterie
+      - sensor.wifi_temperature_humidity_12_batterie
+      - sensor.iphone_battery_level
+      - sensor.iphone_de_jerem_battery_level
+      - sensor.iphone_de_jerem_watch_battery_level
+      - sensor.iphone_de_magali_batterie_2
+      - sensor.iphone_de_magali_watch_battery_level
+      - sensor.ipad_de_magali_2_battery_level
+      - sensor.ipad_de_magali_battery_level
+      - sensor.pc_nina_battery_level_2
+      - sensor.sm_t510_battery_plus
+      state_filter:
+      - operator: <
+        value: 30
+      card:
+        type: entities
+        title: Batteries sous 30 %
+        show_header_toggle: false
+      show_empty: false
+      state_color: true
+  theme: visionos

@@ -1,0 +1,18 @@
+# Home Assistant secrets and runtime data
+secrets.yaml
+.storage/
+*.db
+*.db-shm
+*.db-wal
+*.log*
+home-assistant_v2.db*
+custom_components/
+www/community/
+backups/
+.cloud/
+deps/
+tts/
+.ssh/
+.HA_VERSION
+__pycache__/
+.ci/
