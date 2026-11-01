@@ -1,0 +1,58 @@
+- title: Climat
+  path: climat
+  icon: mdi:thermostat
+  type: sections
+  max_columns: 3
+  sections:
+    - type: grid
+      cards:
+        - type: heading
+          heading: Climatisation & chauffage
+          heading_style: title
+          icon: mdi:home-thermometer
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-climate-card
+              entity: climate.clim_noe
+              name: Clim Noé
+              show_temperature_control: true
+              hvac_modes: [off, cool, heat, auto, dry, fan_only]
+            - type: custom:mushroom-climate-card
+              entity: climate.clim_nous
+              name: Clim chambre parentale
+              show_temperature_control: true
+              hvac_modes: [off, cool, heat, auto, dry, fan_only]
+            - type: custom:mushroom-climate-card
+              entity: climate.radiateur_couloir_2
+              name: Radiateur couloir
+              show_temperature_control: true
+            - type: custom:mushroom-climate-card
+              entity: climate.radiateur_cuisine
+              name: Radiateur cuisine
+              show_temperature_control: true
+            - type: custom:mushroom-climate-card
+              entity: climate.seche_serviette
+              name: Sèche-serviettes
+              show_temperature_control: true
+        - type: heading
+          heading: Relevés connus
+          heading_style: subtitle
+          icon: mdi:chart-line
+        - type: entities
+          entities:
+            - entity: sensor.current_clim_noe
+              name: Température clim Noé
+            - entity: sensor.current_clim_nous
+              name: Température clim chambre parentale
+            - entity: sensor.thermometre_couloir_temperature
+              name: Température couloir
+            - entity: sensor.thermometre_couloir_humidite
+              name: Humidité couloir
+            - entity: sensor.thermometre_cuisine_temperature
+              name: Température cuisine
+            - entity: sensor.thermometre_cuisine_humidite
+              name: Humidité cuisine

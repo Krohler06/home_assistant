@@ -1,0 +1,54 @@
+- title: Accueil
+  path: accueil
+  icon: mdi:home
+  type: sections
+  max_columns: 3
+  sections:
+    - type: grid
+      cards:
+        - type: heading
+          heading: Bonjour
+          heading_style: title
+          icon: mdi:home-variant
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-weather-card
+              entity: weather.nice
+              name: Météo
+              show_forecast: true
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.backups_stale
+              name: État des sauvegardes
+              icon: mdi:cloud-check
+        - type: heading
+          heading: Accès rapide
+          heading_style: subtitle
+          icon: mdi:view-dashboard
+        - type: custom:bubble-card
+          card_type: button
+          button_type: name
+          name: Pièces
+          icon: mdi:floor-plan
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/pieces
+        - type: custom:bubble-card
+          card_type: button
+          button_type: name
+          name: Climat
+          icon: mdi:thermostat
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/climat
+        - type: custom:bubble-card
+          card_type: button
+          button_type: name
+          name: Maison
+          icon: mdi:home-outline
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/maison

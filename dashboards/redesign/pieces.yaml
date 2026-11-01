@@ -1,0 +1,72 @@
+- title: Pièces
+  path: pieces
+  icon: mdi:floor-plan
+  type: sections
+  max_columns: 3
+  sections:
+    - type: grid
+      cards:
+        - type: heading
+          heading: Dressing
+          heading_style: title
+          icon: mdi:wardrobe
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-water-heater-card
+              entity: water_heater.dhwp_actuator
+              name: Cumulus
+              show_temperature_control: true
+            - type: custom:mushroom-entity-card
+              entity: sensor.cumulus_temperature
+              name: Température du cumulus
+              icon: mdi:water-thermometer
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.dhwp_actuator_heating_status
+              name: Chauffage en cours
+              icon: mdi:heat-wave
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.dhwp_actuator_energy_demand_status
+              name: Demande énergétique
+              icon: mdi:flash
+            - type: custom:mushroom-entity-card
+              entity: sensor.thermometre_dressing_temperature
+              name: Température Dressing
+              icon: mdi:thermometer
+            - type: custom:mushroom-entity-card
+              entity: sensor.thermometre_dressing_humidite
+              name: Humidité Dressing
+              icon: mdi:water-percent
+        - type: heading
+          heading: Bureau
+          heading_style: title
+          icon: mdi:desk
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.thermometre_bureau
+              name: Température
+              icon: mdi:thermometer
+            - type: custom:mushroom-entity-card
+              entity: sensor.thermometre_bureau_humidite
+              name: Humidité
+              icon: mdi:water-percent
+            - type: custom:mushroom-entity-card
+              entity: sensor.thermometre_bureau_batterie
+              name: Batterie du thermomètre
+              icon: mdi:battery
+        - type: heading
+          heading: Lumières
+          heading_style: subtitle
+          icon: mdi:lightbulb-group
+        - type: markdown
+          content: >-
+            Section prévue — **aucune entité de lumière n'est renseignée**.
+            TODO : ajouter les entités de lumière lorsqu'elles auront été identifiées.

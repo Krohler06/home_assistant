@@ -1,0 +1,42 @@
+- title: Maison
+  path: maison
+  icon: mdi:home-outline
+  type: sections
+  max_columns: 3
+  sections:
+    - type: grid
+      cards:
+        - type: heading
+          heading: État de la maison
+          heading_style: title
+          icon: mdi:home-account
+        - type: custom:bubble-card
+          card_type: separator
+          name: Météo
+          icon: mdi:weather-partly-cloudy
+        - type: custom:mushroom-weather-card
+          entity: weather.nice
+          name: Nice
+          show_forecast: true
+        - type: custom:bubble-card
+          card_type: separator
+          name: Sécurité & ouvertures
+          icon: mdi:shield-home
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.porte_entree_porte
+              name: Porte d'entrée
+              icon: mdi:door
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.contact_placard
+              name: Contact placard
+              icon: mdi:door-closed
+        - type: markdown
+          content: >-
+            Les entités sont conservées visibles dans les cartes : Home Assistant
+            affichera leur état « indisponible » lorsqu'elles seront hors ligne.

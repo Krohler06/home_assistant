@@ -1,0 +1,34 @@
+- title: Système
+  path: systeme
+  icon: mdi:server
+  type: sections
+  max_columns: 3
+  sections:
+    - type: grid
+      cards:
+        - type: heading
+          heading: Supervision
+          heading_style: title
+          icon: mdi:server-network
+        - type: custom:layout-card
+          layout_type: custom:grid-layout
+          layout:
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+            grid-gap: 12px
+          cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.system_monitor_temperature_du_processeur
+              name: Température processeur
+              icon: mdi:cpu-64-bit
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.auto_backup_backup_status
+              name: Sauvegarde automatique
+              icon: mdi:backup-restore
+            - type: custom:mushroom-entity-card
+              entity: binary_sensor.backups_stale
+              name: Sauvegardes à jour
+              icon: mdi:cloud-check
+        - type: markdown
+          content: >-
+            TODO : compléter les indicateurs système après vérification des
+            identifiants réellement présents dans Home Assistant.
